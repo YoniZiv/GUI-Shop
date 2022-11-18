@@ -1,6 +1,6 @@
 <hello name="{{ name }}"></hello>
 <p>Start editing to see some magic happen :)</p>
-
+<button (click)="copyShop()">Copy JSON</button>
 <div style="display: flex;width=100%">
   <div style="width: 50%;">
     <div *ngFor="let item of getKeys(shopList)">

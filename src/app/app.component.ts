@@ -1,5 +1,6 @@
 import { Component, VERSION } from '@angular/core';
 import { data } from './GUIShop';
+import { CopyContentService } from './copy-content.service';
 
 @Component({
   selector: 'my-app',
@@ -11,9 +12,8 @@ export class AppComponent {
   data = {};
   shopList = {};
   deletedItems = {};
-  onstructor(copier) {
-    this.copier = copier;
-  }
+
+  constructor(private copier: CopyContentService) {}
   ngOnInit() {
     this.data = data;
     this.shopList = this.data['Shop - Shop List'];
@@ -40,13 +40,15 @@ export class AppComponent {
     const shopKeys = this.getKeys(this.shopList);
     const categories = this.data['Shop - Shop Categories'];
     const newCats = Object.keys(categories).reduce((acc, next) => {
-        const currCat = categories[next];
-        const filteredCatItems = currCat.Items.filter((x) => shopKeys.indexOf(x) !== -1);
-        currCat.Items = filteredCatItems;
-        acc[next] = currCat;
-        return acc;
+      const currCat = categories[next];
+      const filteredCatItems = currCat.Items.filter(
+        (x) => shopKeys.indexOf(x) !== -1
+      );
+      currCat.Items = filteredCatItems;
+      acc[next] = currCat;
+      return acc;
     }, {});
     this.data['Shop - Shop Categories'] = newCats;
     console.log('new', this.data['Shop - Shop Categories']);
-}
+  }
 }
