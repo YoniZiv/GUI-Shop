@@ -35,7 +35,6 @@ export class AppComponent {
   }
 
   copyShop() {
-    this.copier.copyText(JSON.stringify(this.shopList));
     this.data['Shop - Shop List'] = this.shopList;
     const shopKeys = this.getKeys(this.shopList);
     const categories = this.data['Shop - Shop Categories'];
@@ -50,5 +49,6 @@ export class AppComponent {
     }, {});
     this.data['Shop - Shop Categories'] = newCats;
     console.log('new', this.data['Shop - Shop Categories']);
+    this.copier.copyText(JSON.stringify(this.data));
   }
 }
