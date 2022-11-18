@@ -1,0 +1,19 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happen :)</p>
+
+<div style="display: flex;width=100%">
+  <div style="width: 50%;">
+    <div *ngFor="let item of getKeys(shopList)">
+      <div (click)="deleteItem(item)">
+        {{ item }}
+      </div>
+    </div>
+  </div>
+  <div style="width: 50%;">
+    <div *ngFor="let item of getKeys(deletedItems)">
+      <div (click)="restoreItem(item)">
+        {{ item }}
+      </div>
+    </div>
+  </div>
+</div>
